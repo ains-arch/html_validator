@@ -21,7 +21,6 @@ def validate_html(html):
     text = _extract_tags(html)
     paren_text = \
         ''.join([html[i] for i in range(len(html)) if (html[i] in "<>")])
-    print("paren_text=", paren_text)
     for i, symbol in enumerate(paren_text):
         if symbol == '<':
             stack.append(symbol)
@@ -66,6 +65,15 @@ def _extract_tags(html):
         if html[i] == '<':
             for j in range(len(html[i:])):
                 if html[i + j] == '>':
-                    tags.append(html[i:i + j + 1])
+                    assembled = ''
+                    for c in html[i:i + j + 1]:
+                        if c == ' ':
+                            assembled += ">"
+                            print("if assembled=", assembled)
+                            break
+                        else:
+                            assembled += c
+                            print("else assembled=", assembled)
+                    tags.append(assembled)
                     break
     return tags
