@@ -65,7 +65,7 @@ def _extract_tags(html):
     for i in range(len(html)):
         if html[i] == '<':
             for j in range(len(html[i:])):
-                if html[i+j] == '>':
-                    tags.append(html[i:i+j+1])
+                if html[i + j] == '>':
+                    tags.append(html[i:i + j + 1])
                     break
     return tags
